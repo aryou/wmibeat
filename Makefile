@@ -9,6 +9,7 @@ NOTICE_FILE=NOTICE
 
 GOX_OS=windows
 TARGETS="windows/amd64 windows/386"
+PACKAGES=wmibeat/win
 
 # Path to the libbeat Makefile
 -include $(ES_BEATS)/libbeat/scripts/Makefile
@@ -39,6 +40,10 @@ git-init:
 	git commit -m "Add wmibeat"
 	git add .travis.yml
 	git commit -m "Add Travis CI"
+
+.PHONY: gen
+gen:
+	GOOS=windows GOARCH=386 go generate -v -x ./...
 
 # This is called by the beats packer before building starts
 .PHONY: before-build

@@ -1,11 +1,8 @@
 package beater
 
 import (
+	"bytes"
 	"fmt"
-	"time"
-    "bytes"
-    "strings"
-    "strconv"
 	"github.com/elastic/beats/libbeat/beat"
 	"github.com/elastic/beats/libbeat/common"
 	"github.com/elastic/beats/libbeat/logp"
@@ -13,6 +10,9 @@ import (
 	"github.com/go-ole/go-ole"
 	"github.com/go-ole/go-ole/oleutil"
 	"github.com/singlehopllc/wmibeat/config"
+	"strconv"
+	"strings"
+	"time"
 )
 
 type Wmibeat struct {
@@ -149,7 +149,7 @@ func (bt *Wmibeat) Run(b *beat.Beat) error {
 		event := common.MapStr{
 			"@timestamp": common.Time(time.Now()),
 			"type":       b.Name,
-			"counter":    counter,
+			"wmi":        allValues,
 		}
 		bt.client.PublishEvent(event)
 		logp.Info("Event sent")
