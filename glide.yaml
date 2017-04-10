@@ -1,0 +1,11 @@
+package: github.com/singlehopllc/wmibeat
+import:
+- package: github.com/elastic/beats
+  version: 5.2
+  subpackages:
+  - libbeat/beat
+  - libbeat/common
+  - libbeat/logp
+  - libbeat/publisher
+- package: github.com/go-ole/go-ole
+  version: 1.2
